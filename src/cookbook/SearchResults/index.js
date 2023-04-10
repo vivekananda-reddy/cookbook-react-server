@@ -2,6 +2,7 @@ import {useParams} from "react-router";
 import * as searchService from './../../services/search-service.js'
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import MealCards from "../MealCards";
 const SearchResults = () => {
     const {searchText} = useParams();
     const [searchResults, setSearchResults] = useState({})
@@ -25,29 +26,13 @@ const SearchResults = () => {
                     </h2>
 
                     <div className="row">
-                        {
-                            searchResults.meals && searchResults.meals.map((result) => {
-                                return(
-                                    <div className="col-5 col-lg-4 col-xl-3 mt-2 p-1" key={result.idMeal}>
-                                        <Link to={`/meal/details/${result.idMeal}`} className="text-decoration-none">
-                                            <div className="card">
-                                                <img className="card-img-top" src={result.strMealThumb} alt="Recipe image"/>
-                                                <div className="card-body ">
-                                                    <h6 className="card-title">{result.strMeal}</h6>
-                                                </div>
-                                            </div>
-                                        </Link>
-
-                                    </div>
-                                )
-                            })
-                        }
+                        <MealCards meals={searchResults.meals}/>
                     </div>
                 </>
                 :
-                <h2>
-                    Loading...
-                </h2>
+
+                <span className="position-absolute top-50 start-50"><i className="fa-solid fa-cookie-bite fa-spin fa-spin-reverse fa-2xl"></i></span>
+
 
             }
         </div>

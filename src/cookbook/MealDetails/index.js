@@ -42,7 +42,7 @@ const MealDetails = () => {
             <div className="row mt-1">
 
                 <div className="col-4">
-                    <img className="card-img-top" src={mealDetails.strMealThumb} alt="Recipe"/>
+                    <img className="card-img-top rounded-2" src={mealDetails.strMealThumb} alt="Recipe"/>
                 </div>
                 <div className="col-8">
                     <div className="row">
@@ -72,9 +72,6 @@ const MealDetails = () => {
                             <iframe className="embed-responsive-item" src={mealDetails.strYoutube} allowFullScreen></iframe>
                         </div>
                     </div>
-
-
-
 
                 </div>
             </div>
