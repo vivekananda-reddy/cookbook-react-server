@@ -1,3 +1,14 @@
 .wd-img-80pc {
     width: 80%;
+    border-radius: 10px;
 }
+
+.wd-link-no-highlight{
+    text-decoration: none;
+    color: black
+}
+
+.wd-link-no-highlight:hover {
+    text-decoration: none;
+    color: black
+  }

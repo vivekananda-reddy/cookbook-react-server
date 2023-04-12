@@ -15,3 +15,8 @@ export const getCategories = async () => {
     const response = await axios.get(`${API_BASE}/categories`)
     return response.data
 }
+
+export const getMealsbyCategory = async (categoryName) => {
+    const response = await axios.get(`${API_BASE}/categories/${categoryName}`)
+    return response.data
+}

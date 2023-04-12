@@ -9,20 +9,26 @@ const CategoryList = () => {
         () => {
             const fetchCategories = async () => {
                 const response = await searchService.getCategories();
-                console.log(response['categories'])
-                setCategories(response['categories'])
+                console.log(response)
+                setCategories(response)
             };
             fetchCategories()
         },[]
     )
     return(
-        <div className='list-group mb-2'>
-            {
-                Categories.map(
-                    item => <CategoryItem key={item.idCategory} category = {item}/>
-                )
-            }
-        </div>
+        <>
+        {
+            (Categories.categories != null) ?
+                <div className='list-group mb-2'>
+                    {
+                        Categories.categories.map(
+                            item => <CategoryItem key={item.idCategory} category = {item}/>
+                        )
+                    }
+                </div>
+            : <span className="position-absolute top-50 start-50"><i className="fa-solid fa-cookie-bite fa-spin fa-spin-reverse fa-2xl"></i></span>
+        }
+        </>
     )
 }
 
