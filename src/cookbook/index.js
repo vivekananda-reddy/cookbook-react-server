@@ -5,6 +5,8 @@ import SearchResults from './SearchResults';
 import {Route, Routes} from "react-router";
 import Home from "./Home";
 import MealDetails from "./MealDetails";
+import CategoryList from "./MealCategories";
+import "./index.css";
 
 const Cookbook = () => {
     return(
@@ -22,6 +24,7 @@ const Cookbook = () => {
                         <Route path="meal/home" element={<Home/>}/>
                         <Route path="meal/search/:searchText" element={<SearchResults/>}/>
                         <Route path="meal/details/:mealId" element={<MealDetails/>}/>
+                        <Route path="meal/categories" element={<CategoryList/>}/>
                     </Routes>
 
             </div>
