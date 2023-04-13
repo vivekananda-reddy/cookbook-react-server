@@ -12,6 +12,10 @@ const TopNavigationbar = () => {
         navigate(`meal/search/${search}`)
     }
 
+    const goToLogin = () => {
+        navigate('meal/users/login')
+    }
+
     return(
         <>
             <div className="col-6">
@@ -26,7 +30,7 @@ const TopNavigationbar = () => {
                 </div>
             </div>
             <div className="col-6">
-                <button className="btn rounded-pill float-end text-primary border border-1" type="button">
+                <button className="btn rounded-pill float-end text-primary border border-1" type="button" onClick={goToLogin}>
                     <i className="bi bi-person-circle"></i> Login</button>
 
             </div>

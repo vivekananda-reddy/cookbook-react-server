@@ -5,6 +5,8 @@ import SearchResults from './SearchResults';
 import {Route, Routes} from "react-router";
 import Home from "./Home";
 import MealDetails from "./MealDetails";
+import Login from "./Login";
+import SignUp from "./SignUp"
 
 const Cookbook = () => {
     return(
@@ -18,11 +20,13 @@ const Cookbook = () => {
                     <TopNavigationbar/>
                 </div>
 
-                    <Routes>
-                        <Route path="meal/home" element={<Home/>}/>
-                        <Route path="meal/search/:searchText" element={<SearchResults/>}/>
-                        <Route path="meal/details/:mealId" element={<MealDetails/>}/>
-                    </Routes>
+                <Routes>
+                    <Route path="meal/home" element={<Home/>}/>
+                    <Route path="meal/search/:searchText" element={<SearchResults/>}/>
+                    <Route path="meal/details/:mealId" element={<MealDetails/>}/>
+                    <Route path="meal/users/login" element={<Login/>}/>
+                    <Route path="meal/users/signup" element={<SignUp/>}/>
+                </Routes>
 
             </div>
         </div>
