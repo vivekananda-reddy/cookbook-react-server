@@ -1,6 +1,9 @@
 import {Link} from "react-router-dom";
 import {useState} from "react";
 import {registerUser} from "../../services/users-service";
+import {useNavigate} from "react-router";
+import {useDispatch} from "react-redux";
+import {signupThunk} from "../Thunks/users-thunk";
 const SignUp = () => {
 
     const [userName, setUserName] = useState("")
@@ -9,6 +12,8 @@ const SignUp = () => {
     const [name, setName] = useState("")
     const [favCat, setFavCat] = useState("Beef")
     const [error, setError] = useState("")
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const changeUserName = (event) => {
         setUserName(event.target.value)
@@ -39,9 +44,13 @@ const SignUp = () => {
         }
         console.log(user)
         setError("")
-        const response = await registerUser(user)
-        if(response.error) {
-            setError(response.error)
+        const {error} = await dispatch(signupThunk(user))
+        console.log(error)
+        if(error) {
+            setError("User name already exists")
+        }
+        else {
+            navigate("/meal/home")
         }
     }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useReducer} from "react";
 import NavigationSidebar from "./NavigationSidebar";
 import TopNavigationbar from "./TopNavigationbar";
 import SearchResults from './SearchResults';
@@ -7,29 +7,43 @@ import Home from "./Home";
 import MealDetails from "./MealDetails";
 import Login from "./Login";
 import SignUp from "./SignUp"
+import {configureStore} from "@reduxjs/toolkit";
+import usersReducer from "./reducers/users-reducer";
+import {Provider} from "react-redux";
+import Profile from "./profile";
+import LoadLoggedInUser from "./LoadLoggedInUser";
+
+const store = configureStore({reducer: {user:usersReducer}})
 
 const Cookbook = () => {
     return(
-        <div className="row mt-3">
-            <div className="col-2">
-                <NavigationSidebar/>
+        <Provider store={store}>
+            <LoadLoggedInUser>
+                <div className="row mt-3">
+                    <div className="col-2">
+                        <NavigationSidebar/>
 
-            </div>
-            <div className="col-10">
-                <div className="row">
-                    <TopNavigationbar/>
+                    </div>
+                    <div className="col-10">
+                        <div className="row">
+                            <TopNavigationbar/>
+                        </div>
+
+                        <Routes>
+                            <Route path="meal/home" element={<Home/>}/>
+                            <Route path="meal/search/:searchText" element={<SearchResults/>}/>
+                            <Route path="meal/details/:mealId" element={<MealDetails/>}/>
+                            <Route path="meal/users/login" element={<Login/>}/>
+                            <Route path="meal/users/signup" element={<SignUp/>}/>
+                            <Route path="meal/users/profile" element={<Profile/>}/>
+                        </Routes>
+
+                    </div>
                 </div>
+            </LoadLoggedInUser>
 
-                <Routes>
-                    <Route path="meal/home" element={<Home/>}/>
-                    <Route path="meal/search/:searchText" element={<SearchResults/>}/>
-                    <Route path="meal/details/:mealId" element={<MealDetails/>}/>
-                    <Route path="meal/users/login" element={<Login/>}/>
-                    <Route path="meal/users/signup" element={<SignUp/>}/>
-                </Routes>
+        </Provider>
 
-            </div>
-        </div>
 
     )
 

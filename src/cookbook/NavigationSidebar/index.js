@@ -1,15 +1,19 @@
 import {Link, useLocation} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const NavigationSidebar = ({defaultPage}) => {
     const {pathname} = useLocation();
     const paths = pathname.split('/')
     const active = (paths[2]==='')? defaultPage:paths[2];
+
+    const {currentUser} = useSelector(state => state.user)
+
     return (
         <>
             <div className="list-group col-sm-8 col-xl-12">
                 <Link to="/meal/home" className="list-group-item list-group-item-action p-3 text-success">
                     <span><i className="fa-solid fa-cookie-bite fa-2xl"></i></span>
-                    <span className="d-none d-xl-inline fs-5"> Cook Book</span>
+                    <span className="d-none d-xl-inline fs-5"> CookBook</span>
                 </Link>
                 <Link to="/meal/home" className={`list-group-item list-group-item-action ${(active === 'home')? `active`:''}`}>
                     <span><i className="fa-solid fa-house"></i></span>
@@ -30,11 +34,14 @@ const NavigationSidebar = ({defaultPage}) => {
                     <span className="d-none d-xl-inline"> Bookmarks</span>
                 </a>
 
+                {
+                    (currentUser)? <Link to="/meal/users/profile" className={`list-group-item list-group-item-action ${(active === 'profile' || active === 'edit-profile')? `active`:''}`}>
+                                        <span><i className="fa-solid fa-user "></i></span>
+                                        <span className="d-none d-xl-inline"> Profile</span>
+                                    </Link> : ""
+                }
 
-                <Link to="/tuiter/profile" className={`list-group-item list-group-item-action ${(active === 'profile' || active === 'edit-profile')? `active`:''}`}>
-                    <span><i className="fa-solid fa-user "></i></span>
-                    <span className="d-none d-xl-inline"> Profile</span>
-                </Link>
+
 
             </div>
             <div className="d-grid mt-2">
