@@ -44,7 +44,7 @@ const MealDetails = () => {
 
                 <div className="col-8 col-md-5 col-lg-4">
                     <img className="card-img-top rounded-2" src={mealDetails.strMealThumb} alt="Recipe"/>
-                    <div className="d-flex justify-content-center fs-4 mt-2 mb-3 pb-2 pt-2 border-top border-bottom">
+                    <div className="d-flex justify-content-center fs-5 mt-2 mb-3 pb-2 pt-2 border-top border-bottom">
                         <LikesButtons idMeal={mealDetails.idMeal} mealName={mealDetails.strMeal} thumbNail={mealDetails.strMealThumb}/>
                     </div>
                 </div>

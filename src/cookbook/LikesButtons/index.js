@@ -87,17 +87,17 @@ const LikesButtons = ({idMeal, mealName, thumbNail}) => {
     }
 
     return(
-            <div className="row text-muted">
+            <div className="row wd-graded-out-font-color">
                 <div className={`col-5 me-3 ${(currentUser && currentUser.role !== 'user')? 'text-black' : '' }`}>
                     <div className="d-flex" onClick={toggleLikeChef} title="Chef likes">
                         <span className={`pe-3 ${(currentUser && renderLikes.liked && currentUser.role !== "user")? "text-primary": ""}`}><i className="fa-solid fa-utensils"></i></span>
-                        <span className="fs-4">{renderLikes.chefLikes}</span>
+                        <span>{renderLikes.chefLikes}</span>
                     </div>
                 </div>
                 <div className={`col-5 ms-2 ${(currentUser && currentUser.role === 'user')? 'text-black' : '' }`}>
                     <div className="d-flex" onClick={toggleLikeUser} title="User likes">
                         <span className={`pe-3 ${(currentUser && renderLikes.liked && currentUser.role === "user")? "text-danger": ""}`}><i className="fa-solid fa-apple-whole"></i></span>
-                        <span className="fs-4">{renderLikes.userLikes}</span>
+                        <span>{renderLikes.userLikes}</span>
                     </div>
                 </div>
             </div>
