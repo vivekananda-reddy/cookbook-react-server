@@ -42,7 +42,7 @@ const TopNavigationbar = () => {
                 {
                     (currentUser)?
                     <button className="btn rounded-pill float-end text-primary border border-1" type="button" onClick={goToLogout}>
-                        <span class="fa-stack fa-1x">
+                        <span className={`fa-stack fa-1x ${(currentUser.role === "admin")? 'text-danger': (currentUser.role === "chef")? 'text-success':''}`}>
                             <i className="fa-solid fa-circle fa-stack-2x"></i>
                             <i className={`fa-solid fa-${currentUser.name[0].toLowerCase()} fa-stack-1x fa-inverse`}></i>
                         </span>Logout</button>

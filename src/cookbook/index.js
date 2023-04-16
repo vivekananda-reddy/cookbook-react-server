@@ -22,20 +22,19 @@ const Cookbook = () => {
                 <div className="row mt-3">
                     <div className="col-2">
                         <NavigationSidebar/>
-
                     </div>
                     <div className="col-10">
-                        <div className="row">
+                        <div className="row border-bottom sticky-top bg-white">
                             <TopNavigationbar/>
                         </div>
 
                         <Routes>
-                            <Route path="meal/home" element={<Home/>}/>
+                            <Route path="meal/home" index element={<Home/>}/>
                             <Route path="meal/search/:searchText" element={<SearchResults/>}/>
                             <Route path="meal/details/:mealId" element={<MealDetails/>}/>
                             <Route path="meal/users/login" element={<Login/>}/>
                             <Route path="meal/users/signup" element={<SignUp/>}/>
-                            <Route path="meal/users/profile" element={<Profile/>}/>
+                            <Route path="meal/profile" element={<Profile/>}/>
                         </Routes>
 
                     </div>
