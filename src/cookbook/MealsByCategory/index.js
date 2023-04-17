@@ -10,7 +10,6 @@ const MealsbyCategory = () => {
         () => {
             const fetchMealsByCategory = async () => {
                 const response = await searchService.getMealsbyCategory(categoryString)
-                console.log(response)
                 setMeals(response)
             };
             fetchMealsByCategory();

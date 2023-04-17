@@ -1,36 +1,51 @@
 
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-
-
-
+import * as favoriteService from './../../services/favorites-service'
 import * as likesService from "../../services/likes-service";
+
+
 const LikesButtons = ({idMeal, mealName, thumbNail}) => {
     const {currentUser} = useSelector(state => state.user)
-    const [likes, setLikes] = useState({})
+    const [likes, setLikes] = useState([])
     const [renderLikes, setRenderLikes] = useState({})
+    const [favorites, setFavorites] = useState([])
 
     useEffect(() => {
         const fetchMealLikes = async () => {
             const responses = await likesService.findLikesByMeal(idMeal)
             setLikes(responses)
         }
+        const fetchMealFavorites = async() => {
+            const response = await favoriteService.findFavoritesByMeal(idMeal)
+            setFavorites(response)
+        }
+
         fetchMealLikes()
+        fetchMealFavorites()
+
     },[idMeal])
+
     useEffect(() => {
-        const fetchMealLikes = async () => {
+        const fetchMealInteractions = async () => {
             const chefLikes = likes.filter((like) => like.role === "chef" || like.role === "admin").length
-            console.log(chefLikes)
             const userLikes = likes.filter((like) => like.role === "user").length
-            console.log(userLikes)
+            const chefFavorites = favorites.length
             let liked = false
             if (currentUser && likes.find(like => like.user === currentUser._id)) {
                 liked = true
             }
-            setRenderLikes({chefLikes, userLikes, liked})
+
+            let favorited = false
+            if (currentUser && favorites.find(fav => fav._id === currentUser._id)) {
+                favorited = true
+            }
+
+            setRenderLikes({chefLikes, userLikes, chefFavorites, liked, favorited})
         }
-        fetchMealLikes()
-    },[likes])
+        fetchMealInteractions()
+
+    },[likes, favorites])
 
     const toggleLikeChef = async () => {
         if (currentUser) {
@@ -39,12 +54,10 @@ const LikesButtons = ({idMeal, mealName, thumbNail}) => {
                 let likesCount = renderLikes.chefLikes
                 if(renderLikes.liked) {
                     response = await likesService.deleteLike(idMeal)
-                    console.log(response)
                     likesCount--;
                 }
                 else {
                     response = await likesService.createLike({idMeal, strMeal: mealName, strMealThumb: thumbNail})
-                    console.log(response)
                     likesCount++;
                 }
                 if (!response.error) {
@@ -68,12 +81,10 @@ const LikesButtons = ({idMeal, mealName, thumbNail}) => {
                 let likesCount = renderLikes.userLikes
                 if(renderLikes.liked) {
                      response = await likesService.deleteLike(idMeal)
-                    console.log(response)
                     likesCount--;
                 }
                 else {
                     response = await likesService.createLike({idMeal, strMeal: mealName, strMealThumb: thumbNail})
-                    console.log(response)
                     likesCount++;
                 }
                 const newRenderLikes = {
@@ -86,20 +97,55 @@ const LikesButtons = ({idMeal, mealName, thumbNail}) => {
         }
     }
 
+    const toggleFavorite = async () => {
+        if (currentUser) {
+            if (currentUser.role !== 'user') {
+                let response
+                let favsCount = renderLikes.chefFavorites
+                if(renderLikes.favorited) {
+                    response = await favoriteService.deleteFavorite(idMeal)
+                    console.log(response)
+                    favsCount--;
+                }
+                else {
+                    response = await favoriteService.createFavorite(idMeal)
+                    console.log(response)
+                    favsCount++;
+                }
+                if (!response.error) {
+                    const newRenderLikes = {
+                        ...renderLikes,
+                        favorited: !renderLikes.favorited,
+                        chefFavorites: favsCount
+                    }
+                    setRenderLikes(newRenderLikes)
+                }
+
+            }
+        }
+    }
+
     return(
             <div className="row">
-                <div className={`col-5 me-3`}>
+                <div className={`col-4`}>
                     <button className={`d-flex border-0 bg-white ${(!currentUser)? 'wd-graded-out-font-color' : (currentUser && currentUser.role !== 'user')? 'text-black' : 'wd-graded-out-font-color'}`} onClick={toggleLikeChef} title="Chef likes">
-                        <span className={`pe-3 ${(currentUser && renderLikes.liked && currentUser.role !== "user")? "text-primary": ""}`}><i className="fa-solid fa-utensils"></i></span>
+                        <span className={`me-2 ${(currentUser && renderLikes.liked && currentUser.role !== "user")? "text-primary": ""}`}><i className="fa-solid fa-utensils"></i></span>
                         <span>{renderLikes.chefLikes}</span>
                     </button>
                 </div>
-                <div className={`col-5 ms-2 ${(currentUser && currentUser.role === 'user')? 'text-black' : '' }`}>
+                <div className={`col-4 ${(currentUser && currentUser.role === 'user')? 'text-black' : '' }`}>
                     <button className={`d-flex border-0 bg-white ${(!currentUser)? 'wd-graded-out-font-color' : (currentUser && currentUser.role === 'user')? 'text-black' : 'wd-graded-out-font-color'}`} onClick={toggleLikeUser} title="User likes">
-                        <span className={`pe-3 ${(currentUser && renderLikes.liked && currentUser.role === "user")? "text-danger": ""}`}><i className="fa-solid fa-apple-whole"></i></span>
+                        <span className={`me-2 ${(currentUser && renderLikes.liked && currentUser.role === "user")? "text-danger": ""}`}><i className="fa-solid fa-apple-whole"></i></span>
                         <span>{renderLikes.userLikes}</span>
                     </button>
                 </div>
+                <div className={`col-4`}>
+                    <button className={`d-flex border-0 bg-white ${(!currentUser)? 'wd-graded-out-font-color' : (currentUser && currentUser.role !== 'user')? 'text-black' : 'wd-graded-out-font-color'}`} onClick={toggleFavorite} title="Chef favorites">
+                        <span className={`me-2 ${(currentUser && renderLikes.favorited && currentUser.role !== "user")? "text-warning": ""}`}><i className="fa-solid fa-star"></i></span>
+                        <span>{renderLikes.chefFavorites}</span>
+                    </button>
+                </div>
+
             </div>
 
 
