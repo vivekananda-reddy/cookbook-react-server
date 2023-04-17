@@ -18,8 +18,8 @@ const MealsbyCategory = () => {
     [])
     const navigate = useNavigate();
     return(
-        <div>
-            <div className="row mt-1">
+        <div className="row mt-2">
+            <div className="row mb-2">
                 <a href="#" onClick={() => navigate(-1)}><i className="bi bi-arrow-left-short"></i> Back</a>
             </div>
             {
