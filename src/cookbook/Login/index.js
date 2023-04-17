@@ -31,10 +31,8 @@ const Login = () => {
             userName : userNameLogin,
             password: passwordLogin
         }
-        console.log(userCred)
         setError("")
         const {error} = await dispatch(loginThunk(userCred))
-        console.log(error)
         if(error) {
             setError("Invalid User name or Password")
         }

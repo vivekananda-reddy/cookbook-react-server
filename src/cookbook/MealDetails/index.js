@@ -12,7 +12,6 @@ const MealDetails = () => {
         const fetchMealDetails = async() => {
             const response = await searchService.getMealDetails(mealId)
             response.meals[0].strYoutube = response.meals[0].strYoutube.replace("watch?v=","embed/")
-            console.log(response.meals[0])
             setMealDetails(response.meals[0])
 
         }

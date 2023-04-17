@@ -9,7 +9,6 @@ const CategoryList = () => {
         () => {
             const fetchCategories = async () => {
                 const response = await searchService.getCategories();
-                console.log(response)
                 setCategories(response)
             };
             fetchCategories()
