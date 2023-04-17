@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 const NavigationSidebar = ({defaultPage}) => {
     const {pathname} = useLocation();
     const paths = pathname.split('/')
-    const active = (paths[2]==='')? defaultPage:paths[2];
+    const active = (paths[paths.length-1] ==='')? defaultPage:paths[paths.length-1];
 
     const {currentUser} = useSelector(state => state.user)
 
@@ -35,10 +35,16 @@ const NavigationSidebar = ({defaultPage}) => {
                 </Link>
 
                 {
-                    (currentUser)? <Link to="/meal/profile" className={`list-group-item list-group-item-action mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'profile' || active === 'edit-profile')? `active`:''}`}>
+                    (currentUser)? <Link to="/meal/users/profile" className={`list-group-item list-group-item-action mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'profile' || active === 'edit-profile')? `active`:''}`}>
                                         <span className="ms-md-3"><i className="fa-solid fa-user "></i></span>
                                         <span className="d-none d-xl-inline ms-2"> Profile</span>
                                     </Link> : ""
+                }
+                {
+                    (currentUser)? <Link to="/meal/users" className={`list-group-item list-group-item-action mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'users')? `active`:''}`}>
+                        <span className="ms-md-3"><i className="fa-solid fa-users"></i></span>
+                        <span className="d-none d-xl-inline ms-2">Community</span>
+                    </Link> : ""
                 }
 
 
