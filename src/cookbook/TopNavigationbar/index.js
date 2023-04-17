@@ -30,7 +30,7 @@ const TopNavigationbar = () => {
             <div className="col-8 col-lg-6">
                 <div className="p-1 bg-light rounded rounded-pill shadow-sm mb-2">
                     <div className="input-group">
-                        <input type="search" className="form-control border-0 rounded-pill bg-light"  placeholder="Search" onChange={updateSearchField} value={search}/>
+                        <input type="search" className="form-control border-0 rounded-pill bg-light"  placeholder="Search recipes" onChange={updateSearchField} value={search}/>
                         <div className="input-group-append">
                             <button className="btn btn btn-link text-primary" type="button" onClick={searchMeal}>
                                 <i className="bi bi-search"></i></button>

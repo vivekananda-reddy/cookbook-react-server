@@ -12,6 +12,8 @@ import usersReducer from "./reducers/users-reducer";
 import {Provider} from "react-redux";
 import Profile from "./profile";
 import LoadLoggedInUser from "./LoadLoggedInUser";
+import AllUsers from "./AllUsers";
+import CreateChef from "./CreateChef";
 
 const store = configureStore({reducer: {user:usersReducer}})
 
@@ -34,7 +36,9 @@ const Cookbook = () => {
                             <Route path="meal/details/:mealId" element={<MealDetails/>}/>
                             <Route path="meal/users/login" element={<Login/>}/>
                             <Route path="meal/users/signup" element={<SignUp/>}/>
-                            <Route path="meal/profile" element={<Profile/>}/>
+                            <Route path="meal/users/profile" element={<Profile/>}/>
+                            <Route path="meal/users" element={<AllUsers/>}/>
+                            <Route path="meal/users/register-chef" element={<CreateChef/>}/>
                         </Routes>
 
                     </div>
