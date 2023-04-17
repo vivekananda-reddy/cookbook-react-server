@@ -1,6 +1,7 @@
 import {useNavigate, useParams} from "react-router";
 import {useEffect, useState} from "react";
 import * as searchService from "../../services/search-service";
+import LikesButtons from "../LikesButtons";
 
 const MealDetails = () => {
     const {mealId} = useParams();
@@ -43,6 +44,9 @@ const MealDetails = () => {
 
                 <div className="col-4">
                     <img className="card-img-top rounded-2" src={mealDetails.strMealThumb} alt="Recipe"/>
+                    <div className="row">
+                        <LikesButtons/>
+                    </div>
                 </div>
                 <div className="col-8">
                     <div className="row">
