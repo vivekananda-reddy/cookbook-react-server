@@ -6,7 +6,6 @@ import {Route, Routes} from "react-router";
 import Home from "./Home";
 import MealDetails from "./MealDetails";
 import CategoryList from "./MealCategories";
-import "./index.css";
 import MealsbyCategory from "./MealsByCategory";
 import Login from "./Login";
 import SignUp from "./SignUp"
@@ -34,7 +33,7 @@ const Cookbook = () => {
                         </div>
 
                         <Routes>
-                            <Route path="meal/home" index element={<Home/>}/>
+                            <Route path="meal/home" element={<Home/>}/>
                             <Route path="meal/search/:searchText" element={<SearchResults/>}/>
                             <Route path="meal/details/:mealId" element={<MealDetails/>}/>
                             <Route path="meal/users/login" element={<Login/>}/>
