@@ -1,10 +1,13 @@
-import React, {useReducer} from "react";
+import React from "react";
 import NavigationSidebar from "./NavigationSidebar";
 import TopNavigationbar from "./TopNavigationbar";
 import SearchResults from './SearchResults';
 import {Route, Routes} from "react-router";
 import Home from "./Home";
 import MealDetails from "./MealDetails";
+import CategoryList from "./MealCategories";
+import "./index.css";
+import MealsbyCategory from "./MealsByCategory";
 import Login from "./Login";
 import SignUp from "./SignUp"
 import {configureStore} from "@reduxjs/toolkit";
@@ -36,6 +39,8 @@ const Cookbook = () => {
                             <Route path="meal/users/login" element={<Login/>}/>
                             <Route path="meal/users/signup" element={<SignUp/>}/>
                             <Route path="meal/users/profile" element={<Profile/>}/>
+                            <Route path="meal/categories" element={<CategoryList/>}/>
+                            <Route path="meal/categories/:categoryString" element={<MealsbyCategory/>}/>
                         </Routes>
 
                     </div>
