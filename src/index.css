@@ -11,3 +11,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.wd-graded-out-font-color {
+  color: rgb(169,169,169);
+}
+
+.wd-font-12 {
+  font-size: 12px;
+}
+
+.active {
+  background-color: rgb(240,240,240) !important;
+  font-weight: bold;
+  color : black !important;
+}
+

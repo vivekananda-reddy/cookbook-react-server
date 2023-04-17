@@ -39,7 +39,7 @@ const Login = () => {
             setError("Invalid User name or Password")
         }
         else {
-           navigate("/meal/home")
+           navigate(-1)
         }
     }
 

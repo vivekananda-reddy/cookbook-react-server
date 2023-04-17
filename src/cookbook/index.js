@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useReducer} from "react";
 import NavigationSidebar from "./NavigationSidebar";
 import TopNavigationbar from "./TopNavigationbar";
 import SearchResults from './SearchResults';
@@ -6,7 +6,6 @@ import {Route, Routes} from "react-router";
 import Home from "./Home";
 import MealDetails from "./MealDetails";
 import CategoryList from "./MealCategories";
-import "./index.css";
 import MealsbyCategory from "./MealsByCategory";
 import Login from "./Login";
 import SignUp from "./SignUp"
@@ -25,10 +24,9 @@ const Cookbook = () => {
                 <div className="row mt-3">
                     <div className="col-2">
                         <NavigationSidebar/>
-
                     </div>
                     <div className="col-10">
-                        <div className="row">
+                        <div className="row border-bottom sticky-top bg-white">
                             <TopNavigationbar/>
                         </div>
 

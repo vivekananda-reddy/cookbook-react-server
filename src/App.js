@@ -7,7 +7,7 @@ import Cookbook from './cookbook';
 function App() {
   return (
       <BrowserRouter>
-        <div className="container">
+        <div className="container-xl">
           <Routes>
             <Route path="/*" element = {<Cookbook/>}/>
           </Routes>

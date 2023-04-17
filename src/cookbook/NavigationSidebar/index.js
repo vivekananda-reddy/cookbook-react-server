@@ -10,43 +10,41 @@ const NavigationSidebar = ({defaultPage}) => {
 
     return (
         <>
-            <div className="list-group col-sm-8 col-xl-12">
-                <Link to="/meal/home" className="list-group-item list-group-item-action p-3 text-success">
-                    <span><i className="fa-solid fa-cookie-bite fa-2xl"></i></span>
-                    <span className="d-none d-xl-inline fs-5"> CookBook</span>
+            <div className="list-group col-sm-10 col-lg-9 col-xl-12 sticky-top">
+                <Link to="/meal/home" className="list-group-item list-group-item-action pt-2 pb-2 ps-0 border-0 text-success">
+                    <span className="ms-md-3 ms-xl-0"><i className="fa-solid fa-cookie-bite fa-2xl"></i></span>
+                    <span className="d-none d-xl-inline fs-4 fw-semibold"> CookBook</span>
                 </Link>
-                <Link to="/meal/home" className={`list-group-item list-group-item-action ${(active === 'home')? `active`:''}`}>
-                    <span><i className="fa-solid fa-house"></i></span>
-                    <span className="d-none d-xl-inline"> Home</span>
+                <Link to="/meal/home" className={`list-group-item list-group-item-action mt-3 mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'home')? `active`:''}`}>
+                    <span className="ms-md-3"><i className="fa-solid fa-house"></i></span>
+                    <span className="d-none d-xl-inline ms-2"> Home</span>
                 </Link>
-                <Link to="/tuiter/explore" className={`list-group-item list-group-item-action ${(active === 'explore')? `active`:''}`}>
-                    <span><i className="fa-solid fa-utensils"></i></span>
-                    <span className="d-none d-xl-inline"> Specials</span>
-                </Link>
-
-                <Link to="/meal/categories" className={`list-group-item list-group-item-action ${(active === 'categories')? `active`:''}`}>
-                    <span><i className="fa-solid fa-tags"></i></span>
-                    <span className="d-none d-xl-inline"> Categories</span>
+                <Link to="/tuiter/explore" className={`list-group-item list-group-item-action mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'explore')? `active`:''}`}>
+                    <span className="ms-md-3"><i className="fa-solid fa-utensils"></i></span>
+                    <span className="d-none d-xl-inline ms-2"> Specials</span>
                 </Link>
 
-                <a href="" className={`list-group-item list-group-item-action ${(active === 'bookmarks')? `active`:''}`}>
-                    <span><i className="fa-solid fa-bookmark"></i></span>
-                    <span className="d-none d-xl-inline"> Bookmarks</span>
-                </a>
+                <Link to="/meal/categories" className={`list-group-item list-group-item-action mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'categories')? `active`:''}`}>
+                    <span className="ms-md-3"><i className="fa-solid fa-tags"></i></span>
+                    <span className="d-none d-xl-inline ms-2"> Categories</span>
+                </Link>
+
+                <Link  href="" className={`list-group-item list-group-item-action mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'bookmarks')? `active`:''}`}>
+                    <span className="ms-md-3"><i className="fa-solid fa-bookmark"></i></span>
+                    <span className="d-none d-xl-inline ms-2"> Bookmarks</span>
+                </Link>
 
                 {
-                    (currentUser)? <Link to="/meal/users/profile" className={`list-group-item list-group-item-action ${(active === 'profile' || active === 'edit-profile')? `active`:''}`}>
-                                        <span><i className="fa-solid fa-user "></i></span>
-                                        <span className="d-none d-xl-inline"> Profile</span>
+                    (currentUser)? <Link to="/meal/profile" className={`list-group-item list-group-item-action mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'profile' || active === 'edit-profile')? `active`:''}`}>
+                                        <span className="ms-md-3"><i className="fa-solid fa-user "></i></span>
+                                        <span className="d-none d-xl-inline ms-2"> Profile</span>
                                     </Link> : ""
                 }
 
 
 
             </div>
-            <div className="d-grid mt-2">
-                <a href="tweet.html" className="btn btn-primary btn-block rounded-pill">Create Recipe</a>
-            </div>
+
         </>
     )
 }
