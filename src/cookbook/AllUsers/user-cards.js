@@ -12,7 +12,8 @@ const UserCards = ({usersData}) => {
                                           {(user.role === "admin")?<label className="bg-secondary text-white rounded-pill fw-lighter ps-2 pe-2 wd-font-12 align-top">admin</label>: ""}
                                           {(user.role === "chef")?<label className="bg-secondary text-white rounded-pill fw-lighter ps-2 pe-2 wd-font-12 align-top">chef</label>: ""}
                                       </h4>
-                                      <h6 className="card-subtitle mb-2 text-muted">{user.userName}</h6>
+                                      <h6 className="card-subtitle mb-2 text-muted">
+                                          <i className="fa-solid fa-user"></i> {user.userName}</h6>
                                       <div className="text-black">
                                           <i className="fa-solid fa-heart text-danger"></i> {user.category}</div>
                                   </div>
