@@ -87,18 +87,18 @@ const LikesButtons = ({idMeal, mealName, thumbNail}) => {
     }
 
     return(
-            <div className="row wd-graded-out-font-color">
-                <div className={`col-5 me-3 ${(currentUser && currentUser.role !== 'user')? 'text-black' : '' }`}>
-                    <div className="d-flex" onClick={toggleLikeChef} title="Chef likes">
+            <div className="row">
+                <div className={`col-5 me-3`}>
+                    <button className={`d-flex border-0 bg-white ${(!currentUser)? 'wd-graded-out-font-color' : (currentUser && currentUser.role !== 'user')? 'text-black' : 'wd-graded-out-font-color'}`} onClick={toggleLikeChef} title="Chef likes">
                         <span className={`pe-3 ${(currentUser && renderLikes.liked && currentUser.role !== "user")? "text-primary": ""}`}><i className="fa-solid fa-utensils"></i></span>
                         <span>{renderLikes.chefLikes}</span>
-                    </div>
+                    </button>
                 </div>
                 <div className={`col-5 ms-2 ${(currentUser && currentUser.role === 'user')? 'text-black' : '' }`}>
-                    <div className="d-flex" onClick={toggleLikeUser} title="User likes">
+                    <button className={`d-flex border-0 bg-white ${(!currentUser)? 'wd-graded-out-font-color' : (currentUser && currentUser.role === 'user')? 'text-black' : 'wd-graded-out-font-color'}`} onClick={toggleLikeUser} title="User likes">
                         <span className={`pe-3 ${(currentUser && renderLikes.liked && currentUser.role === "user")? "text-danger": ""}`}><i className="fa-solid fa-apple-whole"></i></span>
                         <span>{renderLikes.userLikes}</span>
-                    </div>
+                    </button>
                 </div>
             </div>
 
