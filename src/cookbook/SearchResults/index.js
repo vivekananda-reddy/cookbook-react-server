@@ -9,6 +9,7 @@ const SearchResults = () => {
     useEffect( () => {
         const fetchResults = async() => {
             const response = await searchService.searchByMeal(searchText)
+            console.log(response)
             setSearchResults(response)
         }
         fetchResults();
