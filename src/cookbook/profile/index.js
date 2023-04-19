@@ -5,16 +5,19 @@ import MealDetails from "../MealDetails";
 import MealCards from "../MealCards";
 import {Link} from "react-router-dom";
 import {profileThunk} from "../Thunks/users-thunk";
+import * as likesService from "../../services/likes-service.js"
 
 const Profile = () => {
     const {currentUser} = useSelector(state => state.user)
     const [favorite, setFavorite] = useState(null)
+    const [userLikes, setUserLikes] = useState([])
     const dispatch = useDispatch()
 
     useEffect(() => {
         const fetchUpdatedProfile = async () => {
             dispatch(profileThunk())
         }
+
 
         fetchUpdatedProfile()
     }, [])
@@ -27,7 +30,17 @@ const Profile = () => {
                 setFavorite(response)
             }
         }
+
+        const fetchLikesByUser=async()=>{
+            if(currentUser){
+                const response=await likesService.findLikesByUser(currentUser._id)
+                setUserLikes(response.reverse())
+            }
+        }
+
         fetchFavorite()
+        fetchLikesByUser()
+
     }, [currentUser])
 
     return(
@@ -104,6 +117,26 @@ const Profile = () => {
                 </div>
                 : ""
             }
+            <div className="row mt-4 border-bottom">
+                <ul className="nav nav-pills nav-justified">
+                    <li className="nav-item">
+                        <button className="nav-link active">Likes</button>
+                    </li>
+                    <li className="nav-item">
+                        <button className="nav-link">Reviews</button>
+                    </li>
+                    
+                </ul>
+            </div>
+
+            <div className="row mb-3 mt-3">
+                <h4>Likes</h4>
+                {
+                    (userLikes.length > 0)? <MealCards meals = {userLikes}/>
+                                          : <div className="row ms-3"> No likes yet... </div>
+                }
+
+            </div>
 
 
 
