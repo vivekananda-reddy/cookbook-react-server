@@ -25,7 +25,7 @@ const Cookbook = () => {
             <LoadLoggedInUser>
                 <div className="row mt-3">
                     <div className="col-2">
-                        <NavigationSidebar/>
+                        <NavigationSidebar defaultPage="home"/>
                     </div>
                     <div className="col-10">
                         <div className="row border-bottom sticky-top bg-white">
@@ -33,6 +33,7 @@ const Cookbook = () => {
                         </div>
 
                         <Routes>
+                            <Route index element={<Home/>}/>
                             <Route path="meal/home" element={<Home/>}/>
                             <Route path="meal/search/:searchText" element={<SearchResults/>}/>
                             <Route path="meal/details/:mealId" element={<MealDetails/>}/>
