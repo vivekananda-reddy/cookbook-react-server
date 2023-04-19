@@ -108,7 +108,7 @@ const Home = () => {
 
                         </div>
                     </div>
-                    <div className="col-12 col-md-6 col-lg-7 text-success text-opacity-75 d-flex">
+                    <div className="col-12 col-md-6 col-lg-7 text-success d-flex">
                         {
                             (currentUser)?
                             <span className="align-self-center fs-5">Here are some special curated recipes from your favorite category <h5>- {todayCategory}</h5></span>
