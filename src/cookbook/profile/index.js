@@ -1,12 +1,23 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import * as searchService from "./../../services/search-service.js"
 import MealDetails from "../MealDetails";
 import MealCards from "../MealCards";
+import {Link} from "react-router-dom";
+import {profileThunk} from "../Thunks/users-thunk";
 
 const Profile = () => {
     const {currentUser} = useSelector(state => state.user)
     const [favorite, setFavorite] = useState(null)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const fetchUpdatedProfile = async () => {
+            dispatch(profileThunk())
+        }
+
+        fetchUpdatedProfile()
+    }, [])
 
     useEffect(() => {
         const fetchFavorite = async () => {
@@ -16,7 +27,6 @@ const Profile = () => {
                 setFavorite(response)
             }
         }
-
         fetchFavorite()
     }, [currentUser])
 
@@ -24,7 +34,14 @@ const Profile = () => {
         (currentUser)?
         <div className="row mt-2">
             <h3 className="bg-success bg-opacity-10 p-2 rounded-3 text-center">Profile</h3>
-            <div className="row ms-lg-5 mt-3">
+
+            <div className="row text-end">
+                <Link to="/meal/users/edit-profile" className="text-decoration-none">
+                    <button className="btn btn-sm btn-outline-primary rounded-pill">edit-profile <i className="fa-solid fa-pencil"></i> </button>
+                </Link>
+            </div>
+
+            <div className="row ms-lg-5">
                 <div className="d-none d-md-block col-2 pt-3 pb-1 text-md-center border rounded-3">
                     <div className="row">
                         <span className="fs-1"><i className="fa-regular fa-id-badge fa-xl"></i></span>
@@ -78,6 +95,7 @@ const Profile = () => {
                     </div>
                 </div>
             </div>
+
             {
                 (favorite)?
                 <div className="row mt-4 ms-2 w-md-75">
@@ -86,6 +104,8 @@ const Profile = () => {
                 </div>
                 : ""
             }
+
+
 
         </div>
 

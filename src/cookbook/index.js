@@ -16,6 +16,7 @@ import Profile from "./profile";
 import LoadLoggedInUser from "./LoadLoggedInUser";
 import AllUsers from "./AllUsers";
 import CreateChef from "./CreateChef";
+import EditProfile from "./profile/edit-profile";
 
 const store = configureStore({reducer: {user:usersReducer}})
 
@@ -39,6 +40,7 @@ const Cookbook = () => {
                             <Route path="meal/users/login" element={<Login/>}/>
                             <Route path="meal/users/signup" element={<SignUp/>}/>
                             <Route path="meal/users/profile" element={<Profile/>}/>
+                            <Route path="meal/users/edit-profile" element={<EditProfile/>}/>
                             <Route path="meal/users" element={<AllUsers/>}/>
                             <Route path="meal/users/register-chef" element={<CreateChef/>}/>
                             <Route path="meal/categories" element={<CategoryList/>}/>
