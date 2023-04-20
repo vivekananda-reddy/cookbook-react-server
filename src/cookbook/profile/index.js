@@ -125,7 +125,7 @@ const Profile = () => {
                     <li className="nav-item">
                         <button className="nav-link">Reviews</button>
                     </li>
-                    
+
                 </ul>
             </div>
 
@@ -137,8 +137,6 @@ const Profile = () => {
                 }
 
             </div>
-
-
 
         </div>
 
