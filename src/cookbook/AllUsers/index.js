@@ -11,19 +11,12 @@ const AllUsers = () => {
 
     useEffect(() => {
         const fetchUsers = async() => {
-            if (currentUser) {
-                const response = await userService.getAllUsers()
-                console.log(response)
-                setUsersData(response)
-            }
+            const response = await userService.getAllUsers()
+            setUsersData(response)
         }
         fetchUsers()
 
     }, [currentUser])
-
-    if (!(currentUser)) {
-        return (<h3 className="mt-4 ms-4">You don't have access to view this page</h3>)
-    }
 
     return(
         <div className="row mt-2">
