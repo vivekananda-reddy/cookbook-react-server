@@ -7,6 +7,11 @@ export const findReviewsByMealId = async (mealId) => {
     return response.data
 }
 
+export const findReviewsByUser = async (userId) => {
+    const response = await api.get(`${API_BASE}/users/${userId}/reviews`)
+    return response.data
+}
+
 export const createReview = async (review) => {
     const response = await api.post(`${API_BASE}/reviews`, review)
     return response.data

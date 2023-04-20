@@ -19,20 +19,11 @@ const NavigationSidebar = ({defaultPage}) => {
                     <span className="ms-md-3"><i className="fa-solid fa-house"></i></span>
                     <span className="d-none d-xl-inline ms-2"> Home</span>
                 </Link>
-                <Link to="/tuiter/explore" className={`list-group-item list-group-item-action mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'explore')? `active`:''}`}>
-                    <span className="ms-md-3"><i className="fa-solid fa-utensils"></i></span>
-                    <span className="d-none d-xl-inline ms-2"> Specials</span>
-                </Link>
-
                 <Link to="/meal/categories" className={`list-group-item list-group-item-action mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'categories')? `active`:''}`}>
                     <span className="ms-md-3"><i className="fa-solid fa-tags"></i></span>
                     <span className="d-none d-xl-inline ms-2"> Categories</span>
                 </Link>
 
-                <Link  href="" className={`list-group-item list-group-item-action mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'bookmarks')? `active`:''}`}>
-                    <span className="ms-md-3"><i className="fa-solid fa-bookmark"></i></span>
-                    <span className="d-none d-xl-inline ms-2"> Bookmarks</span>
-                </Link>
 
                 {
                     (currentUser)? <Link to="/meal/users/profile" className={`list-group-item list-group-item-action mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'profile' || active === 'edit-profile')? `active`:''}`}>

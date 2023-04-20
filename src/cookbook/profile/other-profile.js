@@ -4,47 +4,51 @@ import * as searchService from "./../../services/search-service.js"
 import MealDetails from "../MealDetails";
 import MealCards from "../MealCards";
 import {Link} from "react-router-dom";
-import {profileThunk} from "../Thunks/users-thunk";
+import * as usersService from "../../services/users-service.js"
 import * as likesService from "../../services/likes-service.js"
 import * as reviewsService from "../../services/reviews-service.js"
 import ReviewsByUser from "../Reviews/reviews-by-user";
 import {findReviewsByUser} from "../../services/reviews-service.js";
+import {useParams} from "react-router";
 
-const Profile = () => {
-    const {currentUser} = useSelector(state => state.user)
+const OtherProfile = () => {
+
     const [favorite, setFavorite] = useState(null)
     const [userLikes, setUserLikes] = useState([])
     const [userReviews, setUserReviews] = useState([])
     const [activeTab, setActiveTab] = useState("Likes")
     const dispatch = useDispatch()
+    const {userId} = useParams()
+    const [otherUser, setOtherUser] = useState({})
 
     useEffect(() => {
-        const fetchUpdatedProfile = async () => {
-            dispatch(profileThunk())
+        const fetchUserProfile = async () => {
+            const response = await usersService.getUserByID(userId)
+            if(response) {
+                setOtherUser(response)
+            }
         }
-
-
-        fetchUpdatedProfile()
+        fetchUserProfile()
     }, [])
 
     useEffect(() => {
         const fetchFavorite = async () => {
-            if (currentUser && currentUser.role === "chef" && currentUser.favorite) {
-                const response = await searchService.getMealDetails(currentUser.favorite)
+            if (userId && userId.role === "chef" && userId.favorite) {
+                const response = await searchService.getMealDetails(otherUser.favorite)
                 setFavorite(response)
             }
         }
 
         const fetchLikesByUser = async() => {
-            if(currentUser) {
-                const response = await likesService.findLikesByUser(currentUser._id)
+            if(userId) {
+                const response = await likesService.findLikesByUser(userId)
                 setUserLikes(response.reverse())
             }
         }
 
         const fetchReviewsByUser = async() => {
-            if(currentUser) {
-                const response = await reviewsService.findReviewsByUser(currentUser._id)
+            if(userId) {
+                const response = await reviewsService.findReviewsByUser(userId)
                 setUserReviews(response.reverse())
             }
         }
@@ -53,7 +57,7 @@ const Profile = () => {
         fetchLikesByUser()
         fetchReviewsByUser()
 
-    }, [currentUser])
+    }, [otherUser])
 
     const switchActiveTab = (event) => {
         if(event.target.innerHTML === "Likes") {
@@ -65,15 +69,9 @@ const Profile = () => {
     }
 
     return(
-        (currentUser)?
+        (otherUser)?
         <div className="row mt-2">
             <h3 className="bg-success bg-opacity-10 p-2 rounded-3 text-center">Profile</h3>
-
-            <div className="row text-end">
-                <Link to="/meal/users/edit-profile" className="text-decoration-none">
-                    <button className="btn btn-sm btn-outline-primary rounded-pill">edit-profile <i className="fa-solid fa-pencil"></i> </button>
-                </Link>
-            </div>
 
             <div className="row ms-lg-5">
                 <div className="d-none d-md-block col-2 pt-3 pb-1 text-md-center border rounded-3">
@@ -81,8 +79,8 @@ const Profile = () => {
                         <span className="fs-1"><i className="fa-regular fa-id-badge fa-xl"></i></span>
                     </div>
                     <div className="row mt-3">
-                        <span className="fw-bold fs-4 text-primary">{currentUser.userName}</span>
-                        <span className="wd-graded-out-font-color">{currentUser.role}</span>
+                        <span className="fw-bold fs-4 text-primary">{otherUser.userName}</span>
+                        <span className="wd-graded-out-font-color">{otherUser.role}</span>
                     </div>
 
                 </div>
@@ -92,7 +90,7 @@ const Profile = () => {
                             <span className="fw-bold">Name</span>
                         </div>
                         <div className="col-6">
-                            <span>{currentUser.name}</span>
+                            <span>{otherUser.name}</span>
                         </div>
                     </div>
                     <div className="row border-bottom mb-2">
@@ -100,7 +98,7 @@ const Profile = () => {
                             <span className="fw-bold">User Name</span>
                         </div>
                         <div className="col-6">
-                            <span>{currentUser.userName}</span>
+                            <span>{otherUser.userName}</span>
                         </div>
                     </div>
                     <div className="row border-bottom mb-2">
@@ -108,23 +106,16 @@ const Profile = () => {
                             <span className="fw-bold">Role</span>
                         </div>
                         <div className="col-6">
-                            <span>{currentUser.role}</span>
+                            <span>{otherUser.role}</span>
                         </div>
                     </div>
-                    <div className="row border-bottom mb-2">
-                        <div className="col-6">
-                            <span className="fw-bold">Email</span>
-                        </div>
-                        <div className="col-6">
-                            <span>{currentUser.email}</span>
-                        </div>
-                    </div>
+
                     <div className="row border-bottom">
                         <div className="col-6">
                             <span className="fw-bold">Interested Category</span>
                         </div>
                         <div className="col-6">
-                            <span>{currentUser.category}</span>
+                            <span>{otherUser.category}</span>
                         </div>
                     </div>
                 </div>
@@ -136,7 +127,7 @@ const Profile = () => {
                     <h4>Favorite <i className="fa-solid fa-star fa-sm text-warning"></i></h4>
                     <MealCards meals={favorite.meals}/>
                 </div>
-                : ""
+                          : ""
             }
             <div className="row mt-4 ms-1 border-bottom">
                 <ul className="nav nav-pills nav-justified">
@@ -160,12 +151,12 @@ const Profile = () => {
                                                   : <div className="row ms-3"> No likes yet... </div>
                         }
                     </>
-                     :
+                                           :
                     <>
                         <h4>Reviews</h4>
                         {
                             (userReviews.length > 0)? <ReviewsByUser reviews = {userReviews}/>
-                            : <div className="row ms-3"> No reviews yet... </div>
+                                                    : <div className="row ms-3"> No reviews yet... </div>
                         }
                     </>
                 }
@@ -177,9 +168,9 @@ const Profile = () => {
 
                      :
 
-        <h3 className="mt-3 ms-3">Please login to view profile</h3>
+        <h3 className="mt-3 ms-3">User you are trying to find doesn't exists</h3>
 
     )
 }
 
-export default Profile;
+export default OtherProfile;
