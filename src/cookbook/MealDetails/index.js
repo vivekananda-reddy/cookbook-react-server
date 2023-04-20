@@ -2,6 +2,7 @@ import {useNavigate, useParams} from "react-router";
 import {useEffect, useState} from "react";
 import * as searchService from "../../services/search-service";
 import LikesButtons from "../LikesButtons";
+import Reviews from "../Reviews";
 
 const MealDetails = () => {
     const {mealId} = useParams();
@@ -75,6 +76,13 @@ const MealDetails = () => {
 
                     </div>
 
+                    <div className="row mb-3">
+                        <h5>Reviews</h5>
+                        {mealDetails &&
+                            <Reviews mealDetails={mealDetails}/>
+                        }
+                    </div>
+                    
                 </div>
             </div>
         </>
