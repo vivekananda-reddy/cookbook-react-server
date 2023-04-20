@@ -31,12 +31,11 @@ const NavigationSidebar = ({defaultPage}) => {
                                         <span className="d-none d-xl-inline ms-2"> Profile</span>
                                     </Link> : ""
                 }
-                {
-                    (currentUser)? <Link to="/meal/users" className={`list-group-item list-group-item-action mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'users')? `active`:''}`}>
+                <Link to="/meal/users" className={`list-group-item list-group-item-action mb-2 pt-2 pb-2 border-0 rounded-3 ${(active === 'users')? `active`:''}`}>
                         <span className="ms-md-3"><i className="fa-solid fa-users"></i></span>
                         <span className="d-none d-xl-inline ms-2">Community</span>
-                    </Link> : ""
-                }
+                </Link>
+
 
 
 
