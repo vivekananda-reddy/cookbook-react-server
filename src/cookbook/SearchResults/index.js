@@ -33,7 +33,6 @@ const SearchResults = () => {
 
                 <span className="position-absolute top-50 start-50"><i className="fa-solid fa-cookie-bite fa-spin fa-spin-reverse fa-2xl"></i></span>
 
-
             }
         </div>
     )
