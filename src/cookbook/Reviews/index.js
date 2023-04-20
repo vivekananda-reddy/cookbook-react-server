@@ -9,8 +9,12 @@ const Reviews = ({mealDetails}) => {
     const [reviews, setReviews] = useState([])
 
     const postReview = async () => {
-        const reviewToBePosted = {reviewText: review, idMeal: mealDetails.idMeal, strMeal: mealDetails.strMeal, strMealThumb: mealDetails.strMealThumb}
+        let reviewToBePosted = {reviewText: review, idMeal: mealDetails.idMeal, strMeal: mealDetails.strMeal, strMealThumb: mealDetails.strMealThumb, createdAt: Date.now()}
         const createdReview = await reviewService.createReview(reviewToBePosted)
+        reviewToBePosted = {
+            ...reviewToBePosted,
+            user : {_id:currentUser._id, role:currentUser.role,userName:currentUser.userName, name:currentUser.name }
+        }
         const newReviews = [...reviews, reviewToBePosted] 
         setReviews(newReviews)
         setReview("")
@@ -29,24 +33,21 @@ const Reviews = ({mealDetails}) => {
     return(
         <>
             <div className="row mb-3">
-            {reviews.length>0 && (
-            <ul>
-            {
-                reviews.map(review => <li><ReviewCard review = {review}/></li>)
-            }
-            </ul>
-            )}
-
-                {currentUser && (
-                <div>
-                    <label htmlFor="reviewTextArea">Please leave your review below!</label>
-                    <textarea onChange={(e) => setReview(e.target.value)} value = {review} className="form-control" id="reviewTextArea" rows="3"></textarea>
-                    <div className="d-flex flex-row-reverse">
-                        <button onClick = {postReview} type="button" className="btn btn-primary w-25 mt-2">Post</button>    
-                    </div>
-                </div>
+                {reviews.length>0 && (
+                    reviews.map(review => <ReviewCard key={review._id}  review = {review}/>)
                 )}
             </div>
+
+            {currentUser && (
+            <div className="row">
+                <label htmlFor="reviewTextArea">Please leave your review below!</label>
+                <textarea onChange={(e) => setReview(e.target.value)} value = {review} className="form-control" id="reviewTextArea" rows="3"></textarea>
+                <div className="d-flex flex-row-reverse">
+                    <button onClick = {postReview} type="button" className="btn btn-primary w-25 mt-2">Post</button>
+                </div>
+            </div>
+            )}
+
             
         </>
     )
