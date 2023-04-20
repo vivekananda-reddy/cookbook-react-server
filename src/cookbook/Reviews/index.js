@@ -33,9 +33,10 @@ const Reviews = ({mealDetails}) => {
     return(
         <>
             <div className="row mb-3">
-                {reviews.length>0 && (
+                {(reviews.length>0)? (
                     reviews.map(review => <ReviewCard key={review._id}  review = {review}/>)
-                )}
+                ) : <p>No reviews posted yet...</p>
+                }
             </div>
 
             {currentUser && (
