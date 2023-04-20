@@ -20,3 +20,8 @@ export const getMealsbyCategory = async (categoryName) => {
     const response = await axios.get(`${API_BASE}/categories/${categoryName}`)
     return response.data
 }
+
+export const getRandomMeal = async () => {
+    const response = await axios.get(`${API_BASE}/random`)
+    return response.data
+}
