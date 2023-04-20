@@ -13,7 +13,7 @@ const ReviewCard = ({review}) => {
             <div className="col-12 col-sm-9 col-md-10">
                 <div className="row">
                     <div className="col-6">
-                        <Link to="/meal/users/profile/:uid" className="text-decoration-none fw-semibold fs-5">{review.user.name}</Link>
+                        <Link to={`/meal/users/profile/${review.user._id}`} className="text-decoration-none fw-semibold fs-5">{review.user.name}</Link>
                     </div>
                     <div className="col-6">
                         <span className="float-end text-secondary">{new Date(review.createdAt).toDateString()}</span>

@@ -42,10 +42,8 @@ const SignUp = () => {
         const user = {
             userName, password, email, name, category: favCat
         }
-        console.log(user)
         setError("")
         const {error} = await dispatch(signupThunk(user))
-        console.log(error)
         if(error) {
             setError("User name already exists")
         }
@@ -96,7 +94,6 @@ const SignUp = () => {
                             <option value="Vegan">Vegan</option>
                             <option value="Vegetarian">Vegetarian</option>
                             <option value="Breakfast">Breakfast</option>
-                            <option value="Goat">Goat</option>
                         </select>
                     </div>
                     <button type="button" onClick={signUpUser} className="btn btn-primary ms-2 mt-4">Sign Up</button>

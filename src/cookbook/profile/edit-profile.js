@@ -104,7 +104,6 @@ const EditProfile = () => {
                                     <option value="Vegan">Vegan</option>
                                     <option value="Vegetarian">Vegetarian</option>
                                     <option value="Breakfast">Breakfast</option>
-                                    <option value="Goat">Goat</option>
                                 </select>
                             </div>
                             <button type="button" onClick={editUserProfile} className="btn btn-primary ms-2 mt-4">Save</button>

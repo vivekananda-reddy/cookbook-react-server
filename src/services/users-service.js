@@ -20,7 +20,6 @@ export const loginUser = async (userCred) => {
 
 export const currentProfile = async () => {
     const response = await api.post(`${API_BASE}/profile`)
-    console.log(response.data)
     return response.data
 }
 
@@ -36,5 +35,10 @@ export const getAllUsers = async () => {
 
 export const updateProfile = async (user) => {
     const response = await api.put(`${API_BASE}/edit-profile`, user)
+    return response.data
+}
+
+export const getUserByID = async (userId) => {
+    const response = await api.get(`${API_BASE}/profile/${userId}`)
     return response.data
 }
