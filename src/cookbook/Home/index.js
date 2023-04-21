@@ -59,7 +59,7 @@ const Home = () => {
             </div>
 
             {
-                (currentUser) ?
+                (currentUser && userLikes.length>0) ?
                     <div className="row mb-3">
                         <h3>Recent Likes</h3>
                         <MealCards meals={userLikes}/>
