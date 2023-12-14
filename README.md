@@ -1,5 +1,5 @@
-# Hosted At
-https://webdev-cookbook.netlify.app/meal/home
+## Hosted At
+https://webdev-cookbook.netlify.app
 
 ## Available Scripts
 
