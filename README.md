@@ -1,4 +1,5 @@
 ## Hosted At
+(Backend is hosted on free instances of Render.com so it takes some time to spin up. After opening the below link wait for 2 mins and then refresh the page)
 https://webdev-cookbook.netlify.app
 
 ## Available Scripts
