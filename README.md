@@ -1,70 +1,57 @@
+# Cook Book Frontend Server
+
+Cook Book is a social media web application for cooking enthusiasts. This repo contains the code for frontend. Frontend is built with lots of love, attention to detail, react.js, bootstrap, HTML and CSS.
+The design is fully responsive and works smoothly on all screen sizes like tablet and mobile devices. For Backend Repo refer to: [backend](https://github.com/vivekananda-reddy/cookbook-node-server)
+
 ## Hosted At
 (Backend is hosted on free instances of Render.com so it takes some time to spin up. After opening the below link wait for 2 mins and then refresh the page)
 https://webdev-cookbook.netlify.app
 
-## Available Scripts
+## Features/ Demo
 
-In the project directory, you can run:
+This entire application is built in MERN stack(MongoDb, Express, Nodejs, Reactjs). The application supports 3 different types of users: Admin, Chef, Regular Users. 
 
-### `npm start`
+### Home Screen
+Home screen displays one random recipe from a random category every day.
+![Alt homepage](./UI%20screenshots/cookbookhome1.JPG)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+For a logged-in user it also displays their recent activity.
+![Alt homepage](./UI%20screenshots/userhome1.JPG)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Search
+Users can search for recipes with the search bar on the top. Search results are displayed as follows:
+![Alt homepage](./UI%20screenshots/cookbooksearch1.JPG)
 
-### `npm test`
+### Recipe Screen
+Users can click on any recipe on the search results and view the recipe screen. The icons below the recipe picture display number of chef likes, user likes and if the logged in user has marked a recipe favorite.
+Bottom of the screen we can view the reviews for recipes as well.
+![Alt homepage](./UI%20screenshots/recipescreen1.JPG)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Alt homepage](./UI%20screenshots/recipescreen2.JPG)
 
-### `npm run build`
+### Profile screen
+Users can see their profile and any other user's profile. Update profile button is only visible to their own profile.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Alt homepage](./UI%20screenshots/userprofile1.JPG)
+![Alt homepage](./UI%20screenshots/userprofile2.JPG)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Categories
+All the recipes are categorized and that can be displayed by clicking on the category tab on the left.
+![Alt homepage](./UI%20screenshots/categories.JPG)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Community
+The entire cookbook community can be viewed in community tab. Which displays their names, role and favorite food category.
+![Alt homepage](./UI%20screenshots/communityscreen.JPG)
 
-### `npm run eject`
+### Login/Signup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Login and Signup screens looks as below. If you like the application signup and join the network.
+![Alt homepage](./UI%20screenshots/loginpage.JPG)
+![Alt homepage](./UI%20screenshots/signuppage.JPG)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Getting Started With Code
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Install Node version 18.17.1 and React version 18.2.0. <br>
+Clone the repo, in root directory run `npm install` wait for the dependencies to be installed then run `npm start`. 
+To fully run the application back also should be setup, refer to [backend](https://github.com/vivekananda-reddy/cookbook-node-server) repo for instruction to setup backend server.
