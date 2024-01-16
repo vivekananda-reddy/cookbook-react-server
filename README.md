@@ -53,5 +53,5 @@ Login and Signup screens looks as below. If you like the application signup and 
 ## Getting Started With Code
 
 Install Node version 18.17.1 and React version 18.2.0. <br>
-Clone the repo, in root directory run `npm install` wait for the dependencies to be installed then run `npm start`. 
+Clone the repo, in root directory run `npm install` wait for the dependencies to be installed then run `npm run`. 
 To fully run the application back also should be setup, refer to [backend](https://github.com/vivekananda-reddy/cookbook-node-server) repo for instruction to setup backend server.
